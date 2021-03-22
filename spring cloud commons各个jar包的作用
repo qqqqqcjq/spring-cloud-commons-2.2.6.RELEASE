@@ -1,0 +1,25 @@
+docs : 里面是生成spring cloud commons工程文档的相关文件，不用关注
+spring-cloud-commons : spring cloud commons工程的核心代码。Spring Cloud Commons模块是为了对微服务中的服务注册与发现、负载均衡、
+                       熔断器等功能提供一个抽象层代码，这个抽象层与具体的实现无关。这样这些功能具体的实现上可以采用不同的技术去实现，并可以做到在使用时灵活的更换。
+spring-cloud-commons-dependencies : 里面只有一个pom文件，声明了spring-cloud-commons 工程的的依赖
+spring-cloud-context : SpringCloud在构建上下文 (即ApplicationContext实例)时，采用了Spring父子容器的设计，会在 SpringBoot构建的容器(后面称之为应用容器）之上创建一父容器 Bootstrap Application Context .
+                       那么SpringCloud设计出Bootstrap Application Context ，并把它作为 应用容器的父容器的目的是什么呢：
+                       因为SpringCloud 作为一个微服务框架，需要使用全局的配置中心，而配置中心的配置是可以提供给应用容器的，所以在应用容器初始化和实例化Bean之前需要先完成配置中心的实例化，这个任务就由Bootstrap Application Context 来完成，而配置中心的相关配置属性就从bootstrap.properties或bootstrap.yml文件中读取。
+                       但要注意的是，在Bootstrap Application Context 启动工作完成之后，其从bootstrap.properties或bootstrap.yml文件中读取的配置，是会被应用容器对应的application.properties或yml文件中的同名属性覆盖的。
+spring-cloud-start : 里面没有java代码，只有一个pom.xml文件，配置了启动spring-cloud-commons所需的依赖
+                     spring-boot-starter.jar
+                     spring-cloud-commons.jar
+                     spring-security-rsa.jar
+                     spring-cloud-commons.jar
+spring-cloud-loadbalancer : spring-cloud放弃使用netflix的Rabbion，自己研发的负载均衡组件，基于spring cloud的环境开发
+spring-cloud-start-loadbalancer : 里面没有java代码，只有一个pom.xml文件，配置了启动spring-cloud-loadbalancer所需的依赖, 其实就是spring-cloud-start的基础上多引入一个spring-cloud-loadbalancer.jar
+                                  spring-boot-starter.jar
+                                  spring-cloud-commons.jar
+                                  spring-security-rsa.jar
+                                  spring-cloud-commons.jar
+                                  spring-cloud-loadbalancer.jar
+spring-cloud-test-support : 里面也是测试相关的代码，只有5个类
+spring-cloud-context-integration-tests: 测试spring-cloud-context的代码，里面只有2个类
+spring-cloud-context-webflux-integration-tests : 也是测试代码，里面只有一个类
+
+
